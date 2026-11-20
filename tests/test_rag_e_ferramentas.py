@@ -19,7 +19,7 @@ def test_rag_encontra_checkpoint():
 def test_agenda_do_dia():
     texto = listar_compromissos("2026-11-21")
     assert "Daily do time de plataforma" in texto
-    assert "Entrevista de sistema" in texto
+    assert "Revisao de arquitetura" in texto
 
 
 def test_issues_abertas_do_retriever():

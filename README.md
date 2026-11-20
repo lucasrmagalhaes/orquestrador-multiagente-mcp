@@ -1,12 +1,12 @@
 # Orquestrador multiagente com MCP
 
-Assistente de portfólio do Lucas, dev full stack em busca de vaga de engenheiro de IA no Brasil. Um supervisor em LangGraph coordena três agentes (agenda, notas e issues). Cada agente lê dados de exemplo por um servidor MCP próprio. O conteúdo que volta dessas fontes é tratado como dado, com defesa contra injeção de prompt, teto de autonomia e retomada por checkpoint.
+Assistente de leitura para pedidos do dia a dia. Um supervisor em LangGraph coordena três agentes (agenda, notas e issues). Cada agente lê dados de exemplo por um servidor MCP próprio. O conteúdo que volta dessas fontes é tratado como dado, com defesa contra injeção de prompt, teto de autonomia e retomada por checkpoint.
 
-O caso de uso é o mesmo eixo da secretária com MCP e do assistente Jarvis: o usuário pede algo do dia a dia e o sistema decide quem consulta o quê, sem transformar texto de issue, nota ou convite em ordem.
+O usuário pede algo do dia a dia e o sistema decide quem consulta o quê, sem transformar texto de issue, nota ou convite em ordem.
 
 ## O que o MVP cobre
 
-| Tema que as vagas pedem | Onde está |
+| Tema | Onde está |
 | --- | --- |
 | Agentes | Supervisor mais agenda, notas e issues |
 | RAG | TF-IDF local sobre as notas de exemplo, sem download de modelo |
@@ -94,7 +94,7 @@ Variáveis: copie `.env.example`. `LLM_PROVIDER` aceita `mock`, `openai`, `anthr
 
 ## Tracing
 
-Cada nó emite uma linha JSON com `ts`, `etapa`, `thread_id` e a decisão. Com `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` e o extra `pip install -e ".[langfuse]"`, o processo tenta abrir um cliente Langfuse. Sem chave ou sem o pacote, o log estruturado segue e o pedido não falha. Nesta máquina a suíte rodou sem projeto Langfuse.
+Cada nó emite uma linha JSON com `ts`, `etapa`, `thread_id` e a decisão. Com `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` e o extra `pip install -e ".[langfuse]"`, o processo tenta abrir um cliente Langfuse. Sem chave ou sem o pacote, o log estruturado segue e o pedido não falha. A suíte publicada rodou sem projeto Langfuse.
 
 ## Suíte de injeção
 
@@ -113,7 +113,7 @@ Pedidos benignos de controle: 4 de 4.
 
 Taxa bloqueada: 20 de 22 (90.9%).
 
-Provedor da medição: provedor mock. Nenhuma chave de LLM foi usada. A taxa em um modelo comercial depende de conta e chave do Lucas e não foi medida.
+Provedor da medição: provedor mock. Nenhuma chave de LLM foi usada. A taxa em um modelo comercial não foi medida.
 
 Por camada nesta execução: deteccao 18, filtro_saida 1, politica_autonomia 1, nenhuma 2.
 
@@ -150,7 +150,7 @@ O teste `tests/test_readme.py` roda a suíte de novo e falha se esta tabela ou a
 
 ## Deploy
 
-Os manifests estão prontos para preencher conta, região e tag. Este ambiente não publicou imagem.
+Os manifests estão prontos para preencher conta, região e tag. A imagem ainda não foi publicada.
 
 GCP Cloud Run: `deploy/gcp/cloud-run-service.yaml`. Suba a imagem para Artifact Registry, troque `REGION`, `PROJETO` e `TAG`, e aplique com `gcloud run services replace`.
 
@@ -165,9 +165,9 @@ AWS ECS Fargate: `deploy/aws/ecs-task-definition.json`. Troque `CONTA` e `REGIAO
 - Trocar o regex por um classificador para as paráfrases que vazaram no mock.
 - Repetir a mesma suíte com um modelo comercial quando houver chave, e publicar essa taxa ao lado desta.
 - Trocar o TF-IDF por embeddings do provedor configurado.
-- Ligar servidores MCP de GitHub e Jira somente leitura, com token do Lucas, mantendo a mesma política.
+- Ligar servidores MCP de GitHub e Jira somente leitura, com token próprio, mantendo a mesma política.
 - Apontar o tracing para um projeto Langfuse.
-- Publicar a imagem no Cloud Run ou no ECS com a conta dele.
+- Publicar a imagem no Cloud Run ou no ECS.
 - Se um dia existir ferramenta de escrita, exigir confirmação explícita do usuário fora do texto recuperado.
 
 ## O que depende de chave ou conta
