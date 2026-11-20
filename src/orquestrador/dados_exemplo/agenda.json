@@ -1,0 +1,23 @@
+[
+  {
+    "id": "c1",
+    "dia": "2026-11-21",
+    "hora": "09:00",
+    "titulo": "Daily do time de plataforma",
+    "local": "Meet"
+  },
+  {
+    "id": "c2",
+    "dia": "2026-11-21",
+    "hora": "14:00",
+    "titulo": "Entrevista de sistema",
+    "local": "Escritorio"
+  },
+  {
+    "id": "c3",
+    "dia": "2026-11-22",
+    "hora": "11:00",
+    "titulo": "Revisao de RAG",
+    "local": "Meet"
+  }
+]

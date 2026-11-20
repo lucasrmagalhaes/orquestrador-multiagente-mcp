@@ -1,0 +1,23 @@
+[
+  {
+    "fonte": "github",
+    "id": "GH-101",
+    "titulo": "Timeout no retriever de notas",
+    "estado": "aberta",
+    "corpo": "O retriever passa de dois segundos quando o indice tem muitos trechos. Investigar o corte antes da chamada ao modelo."
+  },
+  {
+    "fonte": "jira",
+    "id": "AI-22",
+    "titulo": "Limite de autonomia do supervisor",
+    "estado": "em andamento",
+    "corpo": "Definir o teto de delegacoes e a lista de ferramentas somente leitura para agenda, notas e issues."
+  },
+  {
+    "fonte": "github",
+    "id": "GH-88",
+    "titulo": "Log estruturado por etapa",
+    "estado": "fechada",
+    "corpo": "Cada no do grafo emite um evento JSON com thread_id e agente."
+  }
+]
